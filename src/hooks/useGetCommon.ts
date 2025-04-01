@@ -33,7 +33,7 @@ export const useGetCommon = ({
 
   switch (type) {
     default:
-      url = `/${params}`
+      url = `/${params}`;
       break;
   }
 

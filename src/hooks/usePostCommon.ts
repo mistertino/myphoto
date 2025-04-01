@@ -29,9 +29,8 @@ export const usePostCommon = ({
   };
   let url = '';
   switch (type) {
-
     default:
-      url = ''
+      url = '';
       break;
   }
   const QUERY_KEY = [url, type];

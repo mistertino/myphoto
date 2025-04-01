@@ -1,7 +1,12 @@
-import { CONSTANTS_ICONS } from "@/utils/constants-icons";
-import { Button, Modal } from "antd";
-import html2canvas from "html2canvas";
-import * as React from "react";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/media-has-caption */
+/* eslint-disable @next/next/no-img-element */
+
+import { Modal } from 'antd';
+import html2canvas from 'html2canvas';
+import * as React from 'react';
+
+import { CONSTANTS_ICONS } from '@/utils/constants-icons';
 
 export interface IAppProps {
   capturedImages: any[];
@@ -19,12 +24,12 @@ export default function ModalView(props: IAppProps) {
   const handleExportImage = async () => {
     if (imageRef.current) {
       const canvas = await html2canvas(imageRef.current);
-      const imgData = canvas.toDataURL("image/png");
+      const imgData = canvas.toDataURL('image/png');
 
       // Tạo thẻ <a> để tải ảnh xuống
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.href = imgData;
-      link.download = "exported-image.png";
+      link.download = 'exported-image.png';
       link.click();
     }
   };
@@ -50,7 +55,7 @@ export default function ModalView(props: IAppProps) {
         footer={<div />}
       >
         <div className="grid grid-cols-3">
-          <div className="col-span-2 bg-slate-400 flex justify-center items-center flex-col p-4 rounded-md bg-opacity-50">
+          <div className="col-span-2 flex flex-col items-center justify-center rounded-md bg-slate-400 bg-opacity-50 p-4">
             <div
               ref={imageRef}
               className="mx-5 flex w-96 flex-col gap-2 bg-slate-950 p-7"
@@ -74,11 +79,11 @@ export default function ModalView(props: IAppProps) {
                         </select>
                     </div> */}
           </div>
-          <div className="col-span-1 flex justify-center items-center">
-            <div className="glass-card col-span-3 flex h-[50vh] flex-col items-center justify-center rounded-xl lg:col-span-1 w-3/4">
+          <div className="col-span-1 flex items-center justify-center">
+            <div className="glass-card col-span-3 flex h-[50vh] w-3/4 flex-col items-center justify-center rounded-xl lg:col-span-1">
               <div className="mt-4  grid w-full grid-cols-5 justify-center pl-4 lg:justify-start">
                 <span className="col-span-2 text-lg font-semibold text-black">
-                  Chọn viền:{" "}
+                  Chọn viền:{' '}
                 </span>
                 <select
                   // value={filter}
@@ -93,7 +98,7 @@ export default function ModalView(props: IAppProps) {
               </div>
               <div className="mt-4  grid w-full grid-cols-5 justify-center pl-4 lg:justify-start">
                 <span className="col-span-2 text-lg font-semibold text-black">
-                  Chọn sticker:{" "}
+                  Chọn sticker:{' '}
                 </span>
                 <select
                   // value={filter}
@@ -106,14 +111,14 @@ export default function ModalView(props: IAppProps) {
                   <option value="pinkify">Trái tim</option>
                 </select>
               </div>
-              <div className="flex w-full items-center justify-center mt-auto">
+              <div className="mt-auto flex w-full items-center justify-center">
                 <div className=" flex w-full items-center justify-center">
                   <button
                     type="button"
                     className="button-glass col-span-1 flex w-fit items-center justify-center"
                     onClick={() => () => handleExportImage()}
                   >
-                    Tải xuống {"  "} <i className={CONSTANTS_ICONS.DOWNLOAD} />
+                    Tải xuống {'  '} <i className={CONSTANTS_ICONS.DOWNLOAD} />
                   </button>
                 </div>
               </div>
