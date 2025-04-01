@@ -4,7 +4,7 @@ import '@/styles/global.css';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 
 import { AppConfig } from '@/utils/AppConfig';
 // import Providers from '';
@@ -46,14 +46,14 @@ export default function RootLayout(props: {
   // Validate that the incoming `locale` parameter is valid
   if (!AppConfig.locales.includes(props?.params?.locale)) notFound();
   // Using internationalization in Client Components
-  const messages = useMessages();
+  // const messages = useMessages();
 
   return (
     <html lang={props?.params?.locale} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider
           locale={props?.params?.locale}
-          messages={messages}
+          // messages={messages}
         >
           <Providers params={props?.params}>{props.children}</Providers>
         </NextIntlClientProvider>
