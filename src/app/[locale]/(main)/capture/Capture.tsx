@@ -8,11 +8,15 @@
 'use client';
 
 import { Button } from 'antd';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+
+import { notify } from '@/utils/common';
 
 import ModalView from './components/ModalView';
 
 export default function Capture() {
+  const router = useRouter();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [capturedImages, setCapturedImages] = useState<any[]>([]);
@@ -60,6 +64,17 @@ export default function Capture() {
       }
     }
     getCameras();
+  }, []);
+
+  useEffect(() => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(() => {
+        router.refresh();
+      })
+      .catch(() => {
+        notify('Bạn phải cho phép dùng camera để sử dụng ứng dụng', 'warning');
+      });
   }, []);
 
   const handleCameraChange = (event: any) => {
