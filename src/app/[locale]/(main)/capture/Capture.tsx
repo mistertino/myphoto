@@ -29,7 +29,6 @@ export default function Capture() {
   const [rotation, setRotation] = useState(0);
   const [flipX, setFlipX] = useState(false);
   const [flipY, setFlipY] = useState(false);
-  const [permissionGranted, setPermissionGranted] = useState(false);
 
   async function startCamera(deviceId: string) {
     try {
@@ -45,7 +44,6 @@ export default function Capture() {
   }
 
   useEffect(() => {
-    // Hàm lấy danh sách camera
     async function getCameras() {
       try {
         const devices = await navigator.mediaDevices.enumerateDevices();
@@ -61,22 +59,8 @@ export default function Capture() {
         console.error('Error accessing camera devices:', error);
       }
     }
-
-    // Kiểm tra quyền truy cập camera
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(() => {
-        setPermissionGranted(true);
-      })
-      .catch(() => {
-        setPermissionGranted(false);
-      });
-
-    // Lấy danh sách camera khi quyền được cấp
-    if (permissionGranted) {
-      getCameras();
-    }
-  }, [permissionGranted]); // Sử dụng `permissionGranted` làm phụ thuộc để kiểm tra quyền truy cập
+    getCameras();
+  }, []);
 
   const handleCameraChange = (event: any) => {
     const deviceId = event.target.value;
