@@ -44,18 +44,18 @@ export default function RootLayout(props: {
   params: { locale: string };
 }) {
   // Validate that the incoming `locale` parameter is valid
-  if (!AppConfig.locales.includes(props.params.locale)) notFound();
+  if (!AppConfig.locales.includes(props?.params?.locale)) notFound();
   // Using internationalization in Client Components
   const messages = useMessages();
 
   return (
-    <html lang={props.params.locale} suppressHydrationWarning>
+    <html lang={props?.params?.locale} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider
-          locale={props.params.locale}
+          locale={props?.params?.locale}
           messages={messages}
         >
-          <Providers params={props.params}>{props.children}</Providers>
+          <Providers params={props?.params}>{props.children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>
