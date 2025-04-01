@@ -39,7 +39,7 @@ export const Main = (props: { children: React.ReactNode }) => {
             {menuItems.map((itemMenu) => (
               <div
                 key={itemMenu.key}
-                className="flex h-full w-24 flex-col items-center justify-center rounded-md p-[1px] text-white hover:border-y hover:border-y-white hover:p-[2px]"
+                className="cursor-pointer flex h-full w-24 flex-col items-center justify-center rounded-md p-[1px] text-white hover:border-y hover:border-y-white hover:p-[2px]"
                 onClick={() => router.push(itemMenu?.href || '')}
               >
                 <i
