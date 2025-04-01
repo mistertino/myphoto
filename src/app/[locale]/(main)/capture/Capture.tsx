@@ -5,11 +5,11 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable @next/next/no-img-element */
 
-'use client';
+"use client";
 
-import { Button } from 'antd';
-import { useEffect, useRef, useState } from 'react';
-import ModalView from './components/ModalView';
+import { Button } from "antd";
+import { useEffect, useRef, useState } from "react";
+import ModalView from "./components/ModalView";
 
 export default function Capture() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -20,11 +20,11 @@ export default function Capture() {
   const [countdown, setCountdown] = useState<number>(0);
   const [cameras, setCameras] = useState<any[]>([]);
   const [selectedCamera, setSelectedCamera] = useState<string | null>(null);
-  const [filter, setFilter] = useState('none');
+  const [filter, setFilter] = useState("none");
   const [openModal, setOpenModal] = useState({
     isOpen: false,
-    data: null
-  })
+    data: null,
+  });
   const [rotation, setRotation] = useState(0);
   const [flipX, setFlipX] = useState(false);
   const [flipY, setFlipY] = useState(false);
@@ -38,7 +38,7 @@ export default function Capture() {
         videoRef.current.srcObject = stream;
       }
     } catch (error) {
-      console.error('Error accessing camera:', error);
+      console.error("Error accessing camera:", error);
     }
   }
 
@@ -47,15 +47,15 @@ export default function Capture() {
       try {
         const devices = await navigator.mediaDevices.enumerateDevices();
         const videoDevices = devices.filter(
-          (device) => device.kind === 'videoinput',
+          (device) => device.kind === "videoinput"
         );
         setCameras(videoDevices);
         if (videoDevices && videoDevices.length > 0) {
-          setSelectedCamera(videoDevices[0] ? videoDevices[0].deviceId : '');
-          startCamera(videoDevices[0] ? videoDevices[0].deviceId : '');
+          setSelectedCamera(videoDevices[0] ? videoDevices[0].deviceId : "");
+          startCamera(videoDevices[0] ? videoDevices[0].deviceId : "");
         }
       } catch (error) {
-        console.error('Error accessing camera devices:', error);
+        console.error("Error accessing camera devices:", error);
       }
     }
     getCameras();
@@ -69,7 +69,7 @@ export default function Capture() {
 
   const capturePhoto = () => {
     if (!videoRef.current || !canvasRef.current) return;
-    const context = canvasRef.current.getContext('2d');
+    const context = canvasRef.current.getContext("2d");
 
     // Đặt kích thước canvas phù hợp với video gốc
     const { videoWidth } = videoRef.current;
@@ -120,12 +120,12 @@ export default function Capture() {
     context?.restore(); // Khôi phục trạng thái gốc của canvas
 
     // Nếu có filter đặc biệt (pinkify), chỉnh sửa từng pixel
-    if (filter === 'pinkify') {
+    if (filter === "pinkify") {
       const imageData: ImageData | undefined = context?.getImageData(
         0,
         0,
         canvasRef.current?.width,
-        canvasRef.current?.height,
+        canvasRef.current?.height
       );
       if (imageData) {
         const dataImg = imageData?.data ?? new Uint8ClampedArray();
@@ -139,7 +139,7 @@ export default function Capture() {
     }
 
     // Chuyển canvas thành ảnh
-    const newImage = canvasRef?.current?.toDataURL('image/png');
+    const newImage = canvasRef?.current?.toDataURL("image/png");
     setCapturedImages((prev) => {
       const updatedImages = [...prev, newImage];
       return updatedImages;
@@ -172,8 +172,6 @@ export default function Capture() {
     captureSequence();
   };
 
-  
-
   return (
     <div className="flex flex-col">
       <div className="grid h-[90vh] grid-cols-3 items-center justify-between gap-2 p-4">
@@ -184,12 +182,12 @@ export default function Capture() {
             playsInline
             className="w-full rounded-lg object-cover"
             style={{
-              filter: filter === 'pinkify' ? 'none' : filter,
-              transform: `rotate(${rotation}deg) ${flipX ? 'scaleX(-1)' : ''} ${flipY ? 'scaleY(-1)' : ''}`,
-              transformOrigin: 'center',
-              transition: 'transform 0.3s ease',
-              width: rotation % 180 === 0 ? '83%' : '60vh',
-              height: rotation % 180 === 0 ? '60vh' : '100%',
+              filter: filter === "pinkify" ? "none" : filter,
+              transform: `rotate(${rotation}deg) ${flipX ? "scaleX(-1)" : ""} ${flipY ? "scaleY(-1)" : ""}`,
+              transformOrigin: "center",
+              transition: "transform 0.3s ease",
+              width: rotation % 180 === 0 ? "83%" : "60vh",
+              height: rotation % 180 === 0 ? "60vh" : "100%",
             }}
           />
           {countdown > 0 && (
@@ -253,10 +251,10 @@ export default function Capture() {
           </div>
           <div className="mt-7 grid w-full grid-cols-5 justify-center pl-4 lg:justify-start">
             <span className="col-span-2 text-sm font-semibold text-white">
-              Chọn camera:{' '}
+              Chọn camera:{" "}
             </span>
             <select
-              value={selectedCamera || ''}
+              value={selectedCamera || ""}
               onChange={handleCameraChange}
               className="col-span-3 mx-2 border px-2 py-1 text-black"
             >
@@ -269,7 +267,7 @@ export default function Capture() {
           </div>
           <div className="mt-4  grid w-full grid-cols-5 justify-center pl-4 lg:justify-start">
             <span className="col-span-2 text-sm font-semibold text-white">
-              Chọn bộ lọc:{' '}
+              Chọn bộ lọc:{" "}
             </span>
             <select
               value={filter}
@@ -285,7 +283,7 @@ export default function Capture() {
           <div className="mt-4 flex w-full flex-col items-center justify-center gap-2 pl-4 lg:items-start">
             <div className="grid w-full grid-cols-5 gap-1">
               <span className="col-span-2 text-sm font-semibold text-white">
-                Thời gian chụp (giây):{' '}
+                Thời gian chụp (giây):{" "}
               </span>
               <input
                 min={3}
@@ -297,7 +295,7 @@ export default function Capture() {
             </div>
             <div className="grid w-full grid-cols-5 gap-1">
               <span className="col-span-2 text-sm font-semibold text-white">
-                Số lần chụp:{' '}
+                Số lần chụp:{" "}
               </span>
               <input
                 min={3}
@@ -326,11 +324,13 @@ export default function Capture() {
               <Button
                 type="text"
                 icon={<i className="fa-solid fa-image-polaroid" />}
-                className='text-white'
-                onClick={() => setOpenModal({
-                  isOpen: true,
-                  data: null
-                })}
+                className="text-white"
+                onClick={() =>
+                  setOpenModal({
+                    isOpen: true,
+                    data: null,
+                  })
+                }
               />
             ) : null}
           </div>
@@ -338,8 +338,13 @@ export default function Capture() {
         {/* ----------------------Option ------------------------------- */}
       </div>
 
-      {openModal.isOpen && <ModalView capturedImages={capturedImages} openModal={openModal} setOpenModal={setOpenModal} />}
-      
+      {openModal.isOpen && (
+        <ModalView
+          capturedImages={capturedImages}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </div>
   );
 }

@@ -1,21 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-'use client';
+"use client";
 
-import 'dayjs/locale/vi';
+import "dayjs/locale/vi";
 
-import dayjs from 'dayjs';
-import localeData from 'dayjs/plugin/localeData';
-import weekday from 'dayjs/plugin/weekday';
-import RotatingText from '@/components/RotatingText/RotatingText';
+import dayjs from "dayjs";
+import localeData from "dayjs/plugin/localeData";
+import weekday from "dayjs/plugin/weekday";
+import RotatingText from "@/components/RotatingText/RotatingText";
 
 dayjs.extend(weekday);
 dayjs.extend(localeData);
-dayjs.locale('vi');
+dayjs.locale("vi");
 
 const DashBoard = () => {
   const now = dayjs();
-  const thu = now.format('dddd');
+  const thu = now.format("dddd");
   // Lấy thứ trong tuần
   const ngay = now.date();
   // Lấy ngày
@@ -25,12 +25,11 @@ const DashBoard = () => {
 
   return (
     <div className="flex min-h-[80vh] w-full items-center">
-      <div className='flex gap-2 items-center justify-center ml-10'>
-
-        <span className='text-5xl text-white font-semibold'>Save</span>
+      <div className="flex gap-2 items-center justify-center ml-10">
+        <span className="text-5xl text-white font-semibold">Save</span>
 
         <RotatingText
-          texts={['moment', 'memory', 'emotions', 'love!']}
+          texts={["moment", "memory", "emotions", "love!"]}
           mainClassName="px-2 sm:px-2 md:px-3 bg-cyan-300 text-black text-5xl font-semibold overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
           staggerFrom={"last"}
           initial={{ y: "100%" }}

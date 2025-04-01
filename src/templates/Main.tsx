@@ -8,19 +8,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 
-'use client';
+"use client";
 
-import 'react-toastify/dist/ReactToastify.css';
-import './index.css';
+import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
-import { Layout } from 'antd';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import { ToastContainer } from 'react-toastify';
+import { Layout } from "antd";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { ToastContainer } from "react-toastify";
 
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
-import { menuItems } from './menuItems';
+import { menuItems } from "./menuItems";
 
 const { Header, Content } = Layout;
 
@@ -40,10 +40,14 @@ export const Main = (props: { children: React.ReactNode }) => {
               <div
                 key={itemMenu.key}
                 className="flex flex-col text-white items-center justify-center w-24 h-full p-[1px] hover:p-[2px] hover:border-y hover:border-y-white rounded-md"
-                onClick={() => router.push(itemMenu?.href || '')}
+                onClick={() => router.push(itemMenu?.href || "")}
               >
-                <i className={`${itemMenu.icon} h-1/2 flex items-center justify-center`} />
-                <span className='h-1/2 flex items-center justify-center'>{itemMenu.label}</span>
+                <i
+                  className={`${itemMenu.icon} h-1/2 flex items-center justify-center`}
+                />
+                <span className="h-1/2 flex items-center justify-center">
+                  {itemMenu.label}
+                </span>
               </div>
             ))}
           </div>
