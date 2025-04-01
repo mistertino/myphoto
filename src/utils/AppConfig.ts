@@ -6,8 +6,8 @@ const localePrefix: LocalePrefix = 'as-needed';
 
 // FIXME: Update this configuration file based on your project information
 export const AppConfig = {
-  name: 'Vietcombank',
-  locales: ['vi', 'en'],
+  name: 'MyPhoto',
+  locales: ['vi'],
   defaultLocale: 'vi',
   localePrefix,
 };
