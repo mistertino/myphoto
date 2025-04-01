@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
+import Loading from '../../loading';
 import Capture from './Capture';
 
 const Page = () => {
   return (
-    <div>
-      <Capture />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div>
+        <Capture />
+      </div>
+    </Suspense>
   );
 };
 
