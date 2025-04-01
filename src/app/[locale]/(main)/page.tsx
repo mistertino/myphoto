@@ -1,5 +1,7 @@
 // import MainPage from './trangquanly/page';
 
+'use server';
+
 import DashBoard from './DashBoard';
 
 export default async function page() {
