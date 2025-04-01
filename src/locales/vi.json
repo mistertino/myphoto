@@ -1,0 +1,9 @@
+{
+  "Dashboard": {
+    "hello-text": "Xin chào",
+    "today_text": "Hôm nay",
+    "day_text": "ngày",
+    "month_text": "tháng",
+    "year_text": "năm"
+  }
+}

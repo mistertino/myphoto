@@ -1,0 +1,44 @@
+.react-resizable-handle {
+  position: absolute;
+  right: -5px;
+  bottom: 0;
+  z-index: 1;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+  display: grid;
+  place-content: center;
+}
+
+.even-row {
+  background-color: #f0f0f0 !important;
+}
+
+.odd-row {
+  background-color: #ffffff !important;
+}
+/* 
+.ant-table-wrapper .ant-table-cell-fix-right {
+  background: inherit !important;
+}
+
+.ant-table-wrapper .ant-table-cell-fix-left {
+  background: inherit !important;
+} */
+
+/* .ant-table-fixed-header.ant-table-thead {
+  position: relative;
+  z-index: 1;
+} */
+
+.ant-table-thead .ant-table-cell-fix-right:hover  {
+  background-color: #fff !important;
+}
+
+.ant-table-thead .ant-table-cell-fix-left:hover  {
+  background-color: #fff !important;
+} 
+
+.ant-table-filter-dropdown {
+  background-color: #fff !important;
+}

@@ -1,0 +1,4 @@
+.loading-client{
+    background-color: rgba(92, 90, 90, 0.3);
+    @apply w-[100vw] h-[100vh] fixed left-0 top-0 z-[10000] justify-center items-center
+}
