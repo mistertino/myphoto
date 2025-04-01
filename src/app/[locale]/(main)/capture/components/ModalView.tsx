@@ -116,7 +116,7 @@ export default function ModalView(props: IAppProps) {
                   <button
                     type="button"
                     className="button-glass col-span-1 flex w-fit items-center justify-center"
-                    onClick={() => () => handleExportImage()}
+                    onClick={() => handleExportImage()}
                   >
                     Tải xuống {'  '} <i className={CONSTANTS_ICONS.DOWNLOAD} />
                   </button>
