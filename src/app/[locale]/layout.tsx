@@ -4,8 +4,8 @@ import '@/styles/global.css';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider } from 'next-intl';
 
+// import { NextIntlClientProvider } from 'next-intl';
 import { AppConfig } from '@/utils/AppConfig';
 // import Providers from '';
 const Providers = dynamic(() => import('@/utils/provider'), { ssr: false }); // fix báo lỗi hydration next themes
@@ -51,12 +51,12 @@ export default function RootLayout(props: {
   return (
     <html lang={props?.params?.locale} suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider
+        {/* <NextIntlClientProvider
           locale={props?.params?.locale}
           // messages={messages}
-        >
-          <Providers params={props?.params}>{props.children}</Providers>
-        </NextIntlClientProvider>
+        > */}
+        <Providers params={props?.params}>{props.children}</Providers>
+        {/* </NextIntlClientProvider> */}
       </body>
     </html>
   );

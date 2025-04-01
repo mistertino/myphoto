@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
 import { SessionProvider } from 'next-auth/react';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from 'next-themes';
 import React from 'react';
 
@@ -21,7 +21,7 @@ function Providers({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const messages = useMessages();
+  // const messages = useMessages();
   const [client] = React.useState(new QueryClient());
   const timeZone = 'Asia/Ho_Chi_Minh';
   // const rdd = useDetect();
@@ -44,7 +44,7 @@ function Providers({
   return (
     <NextIntlClientProvider
       locale={params.locale}
-      messages={messages}
+      // messages={messages}
       timeZone={timeZone}
     >
       <QueryClientProvider client={client}>
