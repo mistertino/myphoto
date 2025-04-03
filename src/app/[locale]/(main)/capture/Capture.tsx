@@ -23,6 +23,7 @@ export default function Capture() {
   const [capturedImages, setCapturedImages] = useState<any[]>([]);
   const [captureInterval, setCaptureInterval] = useState<number>(3);
   const [captureCount, setCaptureCount] = useState(3);
+  const [hiddenCapture, setHiddenCapture] = useState(false);
   const [countdown, setCountdown] = useState<number>(0);
   const [cameras, setCameras] = useState<any[]>([]);
   const [selectedCamera, setSelectedCamera] = useState<string | null>(null);
@@ -70,6 +71,7 @@ export default function Capture() {
         isOpen: true,
         data: null,
       });
+      setHiddenCapture(false);
     }
   }, [capturedImages]);
 
@@ -189,6 +191,7 @@ export default function Capture() {
   };
 
   const startTimedCapture = () => {
+    setHiddenCapture(true);
     setCapturedImages([]);
     let shotCount = 0;
 
@@ -237,8 +240,7 @@ export default function Capture() {
               <span>{countdown}</span>
             </div>
           )}
-          {capturedImages.length === 0 ||
-          capturedImages.length === captureCount ? (
+          {!hiddenCapture ? (
             <Button
               className="absolute bottom-2 right-1/2 !size-16 translate-x-1/2 rounded-full text-white opacity-70 hover:text-red-200"
               onClick={startTimedCapture}
