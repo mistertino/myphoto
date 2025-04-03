@@ -47,9 +47,19 @@ export default function ModalView(props: IAppProps) {
     }, 500);
   }, [imageRef.current]);
 
+  const renderCol = () => {
+    if (capturedImages.length > 6) {
+      return 'grid-cols-3 w-[1152px]';
+    }
+    if (capturedImages.length > 3) {
+      return 'grid-cols-2 w-[770px]';
+    }
+    return 'grid-cols-1 w-96';
+  };
+
   return (
     <Modal
-      width="100vw"
+      width="95vw"
       // height="95vh"
       open={openModal.isOpen}
       onClose={() =>
@@ -64,14 +74,15 @@ export default function ModalView(props: IAppProps) {
           data: null,
         })
       }
+      centered
       className="modal-custom-black"
       footer={<div />}
     >
-      <div className="grid grid-cols-3">
-        <div className="col-span-2 flex flex-col items-center justify-center rounded-md bg-black bg-opacity-50 p-4">
+      <div className="grid max-h-[90vh] grid-cols-3 overflow-y-auto">
+        <div className="col-span-2 flex max-h-[90vh] flex-col items-center  justify-center rounded-md bg-black bg-opacity-50 p-4">
           <ImageView imgSrc={imgSrc} />
         </div>
-        <div className="col-span-1 flex items-center justify-center">
+        <div className="col-span-1 flex max-h-[90vh] items-center justify-center">
           <div className="glass-card col-span-3 flex h-[50vh] w-3/4 flex-col items-center justify-center rounded-xl lg:col-span-1">
             <div className="mt-4  grid w-full grid-cols-5 justify-center pl-4 lg:justify-start">
               <span className="col-span-2 text-lg font-semibold text-black">
@@ -116,18 +127,18 @@ export default function ModalView(props: IAppProps) {
             </div>
           </div>
         </div>
-        <div className="relative">
+        <div className="fixed z-[-1]">
           <div className="absolute left-[-9999] opacity-0">
             <div
               ref={imageRef}
-              className="mx-5 flex w-96 flex-col gap-2 bg-slate-950 p-7"
+              className={`mx-5 grid ${renderCol()} gap-2 bg-slate-950 p-7`}
             >
               {capturedImages.map((img, index) => (
                 <img
                   key={index}
                   src={img}
                   alt={`Captured ${index + 1}`}
-                  className="size-96 rounded-lg object-cover object-center"
+                  className="col-span-1 size-96 rounded-lg object-cover object-center"
                 />
               ))}
             </div>

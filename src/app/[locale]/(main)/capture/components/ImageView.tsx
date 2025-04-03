@@ -18,11 +18,11 @@ const ImageView = (props: AppProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className="max-h-[90vh]">
       <img
         src={imgSrc}
         alt="Preview"
-        className="w-fit cursor-pointer"
+        className="max-h-[90vh] w-fit cursor-pointer"
         onClick={() => setIsOpen(true)}
       />
 

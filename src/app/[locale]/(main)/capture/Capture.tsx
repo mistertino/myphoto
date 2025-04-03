@@ -351,7 +351,7 @@ export default function Capture() {
 
           <canvas ref={canvasRef} className="hidden" />
           <div
-            className="mt-4 flex flex-wrap justify-center gap-2"
+            className="mt-4 flex justify-center gap-2 max-w-[80%] overflow-x-scroll pb-1"
             onClick={() => {
               if (
                 capturedImages.length > 0 &&
@@ -370,7 +370,7 @@ export default function Capture() {
                 key={index}
                 src={img}
                 alt={`Captured ${index + 1}`}
-                className="size-24 rounded-lg border object-cover object-center"
+                className="size-24 rounded-lg border border-black object-cover object-center"
               />
             ))}
           </div>
