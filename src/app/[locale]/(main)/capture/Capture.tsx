@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-plusplus */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -61,6 +63,15 @@ export default function Capture() {
       console.error('Error accessing camera devices:', error);
     }
   }
+
+  useEffect(() => {
+    if (capturedImages.length > 0 && capturedImages.length === captureCount) {
+      setOpenModal({
+        isOpen: true,
+        data: null,
+      });
+    }
+  }, [capturedImages]);
 
   // useEffect(() => {
   //   async function getCameras() {
@@ -339,7 +350,20 @@ export default function Capture() {
           </div>
 
           <canvas ref={canvasRef} className="hidden" />
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
+          <div
+            className="mt-4 flex flex-wrap justify-center gap-2"
+            onClick={() => {
+              if (
+                capturedImages.length > 0 &&
+                capturedImages.length === captureCount
+              ) {
+                setOpenModal({
+                  isOpen: true,
+                  data: null,
+                });
+              }
+            }}
+          >
             {capturedImages.map((img, index) => (
               <img
                 // eslint-disable-next-line react/no-array-index-key
@@ -349,21 +373,6 @@ export default function Capture() {
                 className="size-24 rounded-lg border object-cover object-center"
               />
             ))}
-
-            {capturedImages.length > 0 &&
-            capturedImages.length === captureCount ? (
-              <Button
-                type="text"
-                icon={<i className="fa-solid fa-image-polaroid" />}
-                className="text-white"
-                onClick={() =>
-                  setOpenModal({
-                    isOpen: true,
-                    data: null,
-                  })
-                }
-              />
-            ) : null}
           </div>
         </div>
         {/* ----------------------Option ------------------------------- */}
