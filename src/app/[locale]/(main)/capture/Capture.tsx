@@ -350,7 +350,7 @@ export default function Capture() {
           </div>
 
           <canvas ref={canvasRef} className="hidden" />
-          <div
+          {/* <div
             className="mt-4 flex justify-center gap-2 max-w-[80%] overflow-x-scroll pb-1"
             onClick={() => {
               if (
@@ -373,7 +373,7 @@ export default function Capture() {
                 className="size-24 rounded-lg border border-black object-cover object-center"
               />
             ))}
-          </div>
+          </div> */}
         </div>
         {/* ----------------------Option ------------------------------- */}
       </div>
