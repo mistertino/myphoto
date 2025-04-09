@@ -1,4 +1,9 @@
-'use client'
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable no-await-in-loop */
+
+'use client';
 
 import React, { useRef, useState } from 'react';
 
@@ -20,7 +25,9 @@ const stickers = [
 const ImageEditor = () => {
   const imgSrc = './assets/images/img-filter.jpg';
   const [filter, setFilter] = useState('none');
-  const [stickerList, setStickerList] = useState<{ src: string; x: number; y: number }[]>([]);
+  const [stickerList, setStickerList] = useState<
+    { src: string; x: number; y: number }[]
+  >([]);
   const imgContainerRef = useRef<HTMLDivElement>(null);
 
   const handleAddSticker = (src: string) => {
@@ -30,16 +37,16 @@ const ImageEditor = () => {
   const handleDrag = (index: number, e: React.DragEvent<HTMLImageElement>) => {
     const containerRect = imgContainerRef.current?.getBoundingClientRect();
     if (!containerRect) return;
-  
+
     const x = e.clientX - containerRect.left - 25;
     const y = e.clientY - containerRect.top - 25;
-  
+
     const updated = [...stickerList];
     const sticker = updated[index];
-  
+
     // Kiểm tra sticker tồn tại và có src
     if (!sticker || !sticker.src) return;
-  
+
     updated[index] = { src: sticker.src, x, y };
     setStickerList(updated);
   };
@@ -92,7 +99,7 @@ const ImageEditor = () => {
     <div className="flex flex-col items-center">
       {/* Filter select */}
       <div className="mb-2">
-        <label className="font-semibold mr-2">Filter:</label>
+        <label className="mr-2 font-semibold">Filter:</label>
         <select onChange={(e) => setFilter(e.target.value)} value={filter}>
           {filters.map((f) => (
             <option key={f.value} value={f.value}>
@@ -111,7 +118,7 @@ const ImageEditor = () => {
         <img
           src={imgSrc}
           alt="Main"
-          className="w-full h-full object-cover"
+          className="size-full object-cover"
           style={{ filter }}
         />
         {stickerList.map((sticker, index) => (
@@ -136,19 +143,21 @@ const ImageEditor = () => {
       <div className="mt-4 flex gap-3">
         {stickers.map((src) => (
           <button
+            type="button"
             key={src}
             onClick={() => handleAddSticker(src)}
-            className="border p-2 bg-white rounded"
+            className="rounded border bg-white p-2"
           >
-            <img src={src} alt="sticker" className="w-10 h-10" />
+            <img src={src} alt="sticker" className="size-10" />
           </button>
         ))}
       </div>
 
       {/* Save Button */}
       <button
+        type="button"
         onClick={handleSaveImage}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
       >
         Save Image
       </button>
