@@ -138,7 +138,8 @@ export default function ModalView(props: IAppProps) {
                   key={index}
                   src={img}
                   alt={`Captured ${index + 1}`}
-                  className="col-span-1 size-96 rounded-lg object-cover object-center"
+                  // className="col-span-1 size-96 rounded-lg object-cover object-center"
+                  className="col-span-1 w-full aspect-[12/9]"
                 />
               ))}
             </div>
